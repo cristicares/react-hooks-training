@@ -11,23 +11,29 @@ const useStyles = makeStyles((theme) => ({
   dialogContentContainer: {
     display: "flex",
     flexDirection: "column",
-    "& *": {
+    "& > *": {
       "&:not(code)": {
         marginBottom: 8,
       },
     },
-    "& code": {
-      backgroundColor: theme.palette.background.default,
-      paddingLeft: 4,
-      paddingRight: 4,
+    "& > code": {
+      backgroundColor: "#e8e8e8",
+      paddingLeft: 8,
+      paddingRight: 8,
       "&:first-of-type": {
-        paddingTop: 4,
+        paddingTop: 8,
       },
       "&:last-of-type": {
         marginBottom: 8,
-        paddingBottom: 4,
+        paddingBottom: 8,
       },
     },
+    "& > p": {
+      "& > code": {
+        backgroundColor: "#e8e8e8",
+        fontSize: 14,
+      }
+    }
   },
 }));
 
