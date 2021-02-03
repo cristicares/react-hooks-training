@@ -1,7 +1,30 @@
 import { Typography } from "@material-ui/core";
+import CodeBlock from "../GenericComponents/CodeBlock/CodeBlock";
 import CustomDialog from "../GenericComponents/CustomDialog/CustomDialog";
 import ExampleContainer from "../GenericComponents/ExampleContainer/ExampleContainer";
 import UseReducerExample from "./UseReducerExample";
+
+const reactReducerCode = `const initialState = {
+ myStateValue: '',
+ myOtherStateValue: '',
+}
+const reducer = (state, action) => {
+ switch(action.type) {
+  case 'SET_STATE_VALUE': {
+   return { ...state, myStateValue: action.newMyStateValue }
+  }
+  case 'SET_OTHER_STATE_VALUE': {
+   return { ...state, myOtherStateValue: action.newMyOtherStateValue }
+  }
+  default': {
+   return state
+  }
+ }
+}
+const [state, dispatch] = useReducer(reducer, initialState);`
+
+const dispatchReducerCode = `
+dispatch({ type: 'SET_STATE_VALUE', newMyStateValue: 'a new value for myStateValue' })`
 
 const UseReducerDialog = ({ open, handleClose }) => {
   return (
@@ -19,39 +42,14 @@ const UseReducerDialog = ({ open, handleClose }) => {
         objeto de estado (<code>dispatch</code>). Un ejemplo de implementación
         es:
       </Typography>
-      <code>{`const initialState = {`}</code>
-      <code>&emsp;{`myStateValue: '',`}</code>
-      <code>&emsp;{`myOtherStateValue: '',`}</code>
-      <code>{`}`}</code>
-      <code> </code>
-      <code>{`const reducer = (state, action) => {`}</code>
-      <code>&emsp;{`switch(action.type) {`}</code>
-      <code>&emsp;&emsp;{`case 'SET_STATE_VALUE': {`}</code>
-      <code>
-        &emsp;&emsp;&emsp;
-        {`return { ...state, myStateValue: action.newMyStateValue }`}
-      </code>
-      <code>&emsp;&emsp;{`}`}</code>
-      <code>&emsp;&emsp;{`case 'SET_OTHER_STATE_VALUE': {`}</code>
-      <code>
-        &emsp;&emsp;&emsp;
-        {`return { ...state, myOtherStateValue: action.newMyOtherStateValue }`}
-      </code>
-      <code>&emsp;&emsp;{`}`}</code>
-      <code>&emsp;&emsp;{`default': {`}</code>
-      <code>&emsp;&emsp;&emsp;{`return state`}</code>
-      <code>&emsp;&emsp;{`}`}</code>
-      <code>&emsp;{`}`}</code>
-      <code>{`}`}</code>
-      <code>const [state, dispatch] = useReducer(reducer, initialState);</code>
+      <CodeBlock codeString={reactReducerCode} />
       <Typography>
         Una vez declarado el <code>useReducer</code> nos entrega una variable{" "}
         <code>state</code> y una función <code>dispatch</code>. El objeto{" "}
         <code>state</code> mantendrá y persistirá el estado, mientras{" "}
         <code>dispatch</code> es la función que permite mutarlo. Al usar:
-        <br />
-        <code>{`dispatch({ type: 'SET_STATE_VALUE', newMyStateValue: 'a new value for myStateValue' })`}</code>
       </Typography>
+      <CodeBlock codeString={dispatchReducerCode} />
       <Typography>
         Estamos mutando el valor de la propiedad <code>myStateValue</code>{" "}
         dentro de <code>state</code>

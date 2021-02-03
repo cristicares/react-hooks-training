@@ -1,7 +1,11 @@
 import { Typography } from "@material-ui/core";
+import CodeBlock from "../GenericComponents/CodeBlock/CodeBlock";
 import CustomDialog from "../GenericComponents/CustomDialog/CustomDialog";
 import ExampleContainer from "../GenericComponents/ExampleContainer/ExampleContainer";
 import UseStateExample from "./UseStateExample";
+
+const reactStateCode = `const initialState = 'myInitialState';
+const [myState, setMyState] = useState(initialState);`
 
 const UseStateDialog = ({ open, handleClose }) => {
   return (
@@ -16,8 +20,7 @@ const UseStateDialog = ({ open, handleClose }) => {
         que le entrega un valor inicial. Este valor puede ser consumido durante
         todo el ciclo de vida del componente. Su sintaxis es:
       </Typography>
-      <code>const initialState = 'myInitialState';</code>
-      <code>const [myState, setMyState] = useState(initialState);</code>
+      <CodeBlock codeString={reactStateCode} />
       <ExampleContainer title="Ejemplo">
         <UseStateExample />
       </ExampleContainer>

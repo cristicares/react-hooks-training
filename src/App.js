@@ -1,7 +1,9 @@
 import { Button, CssBaseline, makeStyles } from "@material-ui/core";
 import { useState } from "react";
+import UseContextDialog from "./useContext/UseContextDialog";
 import UseEffectDialog from "./useEffect/UseEffectDialog";
 import UseReducerDialog from "./useReducer/UseReducerDialog";
+import UseRefDialog from "./useRef/UseRefDialog";
 import UseStateDialog from "./useState/UseStateDialog";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +30,8 @@ function App() {
   const [isUseStateOpen, setIsUseStateOpen] = useState(false);
   const [isUseEffectOpen, setIsUseEffectOpen] = useState(false);
   const [isUseReducerOpen, setIsUseReducerOpen] = useState(false);
+  const [isUseContextOpen, setIsUseContextOpen] = useState(false);
+  const [isUseRefOpen, setIsUseRefOpen] = useState(false);
 
   return (
     <div className={classes.application}>
@@ -42,8 +46,12 @@ function App() {
       <Button variant="outlined" onClick={() => setIsUseReducerOpen(true)}>
         Hook: useReducer
       </Button>
-      <Button variant="outlined">Hook: useContext</Button>
-      <Button variant="outlined">Hook: useRef</Button>
+      <Button variant="outlined" onClick={() => setIsUseContextOpen(true)}>
+        Hook: useContext
+      </Button>
+      <Button variant="outlined" onClick={() => setIsUseRefOpen(true)}>
+        Hook: useRef
+      </Button>
       <UseStateDialog
         open={isUseStateOpen}
         handleClose={() => setIsUseStateOpen(false)}
@@ -55,6 +63,14 @@ function App() {
       <UseReducerDialog
         open={isUseReducerOpen}
         handleClose={() => setIsUseReducerOpen(false)}
+      />
+      <UseContextDialog
+        open={isUseContextOpen}
+        handleClose={() => setIsUseContextOpen(false)}
+      />
+      <UseRefDialog
+        open={isUseRefOpen}
+        handleClose={() => setIsUseRefOpen(false)}
       />
     </div>
   );
