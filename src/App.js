@@ -1,5 +1,6 @@
 import { Button, CssBaseline, makeStyles } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ContextAssingmentDialog from "./ContextAssignment/ContextAssignmentDialog";
 import UseContextDialog from "./useContext/UseContextDialog";
 import UseEffectDialog from "./useEffect/UseEffectDialog";
 import UseReducerDialog from "./useReducer/UseReducerDialog";
@@ -32,6 +33,15 @@ function App() {
   const [isUseReducerOpen, setIsUseReducerOpen] = useState(false);
   const [isUseContextOpen, setIsUseContextOpen] = useState(false);
   const [isUseRefOpen, setIsUseRefOpen] = useState(false);
+  const [isAssignmentOpen, setIsAssignmentOpen] = useState(false);
+
+  const [showAssignmentButton, setShowAssignmentButton] = useState(false);
+
+  useEffect(() => {
+    if (isUseRefOpen) {
+      setShowAssignmentButton(true);
+    }
+  }, [isUseRefOpen]);
 
   return (
     <div className={classes.application}>
@@ -52,6 +62,11 @@ function App() {
       <Button variant="outlined" onClick={() => setIsUseRefOpen(true)}>
         Hook: useRef
       </Button>
+      {showAssignmentButton && (
+        <Button variant="outlined" onClick={() => setIsAssignmentOpen(true)}>
+          Hooks: Actividad!
+        </Button>
+      )}
       <UseStateDialog
         open={isUseStateOpen}
         handleClose={() => setIsUseStateOpen(false)}
@@ -71,6 +86,10 @@ function App() {
       <UseRefDialog
         open={isUseRefOpen}
         handleClose={() => setIsUseRefOpen(false)}
+      />
+      <ContextAssingmentDialog
+        open={isAssignmentOpen}
+        handleClose={() => setIsAssignmentOpen(false)}
       />
     </div>
   );
